@@ -14,12 +14,12 @@ class App extends StatelessWidget {
 class PlatformApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if(Platform.isIOS) {
+    if (Platform.isIOS) {
       return CupertinoApp(
-      debugShowCheckedModeBanner: false,
-      home: Login(),
-      onGenerateRoute: Routes.cupertinoRoutes,
-    );
+        debugShowCheckedModeBanner: false,
+        home: Login(),
+        onGenerateRoute: Routes.cupertinoRoutes,
+      );
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
