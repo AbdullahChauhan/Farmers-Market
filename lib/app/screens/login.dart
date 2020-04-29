@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import 'package:farmers_market/app/styles/textfield.dart';
+import 'package:farmers_market/app/styles/colors.dart';
+import 'package:farmers_market/app/styles/textfields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -53,14 +54,24 @@ class Login extends StatelessWidget {
 
   Widget emailField() {
     if(Platform.isIOS) {
-      return CupertinoTextField();
+      return CupertinoTextField(
+        decoration: BoxDecoration( 
+          border: Border.all(color: AppColors.straw, width: 2.0),
+          borderRadius: BorderRadius.circular(16.0)
+        ),
+      );
     }
     return TextField();
   }
 
   Widget passwordField() {
     if(Platform.isIOS) {
-      return CupertinoTextField();
+      return CupertinoTextField(
+        decoration: BoxDecoration( 
+          border: Border.all(color: AppColors.straw, width: 2.0),
+          borderRadius: BorderRadius.circular(16.0)
+        ),
+      );
     }
     return TextField();
   }
