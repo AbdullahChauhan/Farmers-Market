@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:farmers_market/app/styles/textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -39,11 +40,11 @@ class Login extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          padding: EdgeInsets.symmetric(horizontal: TextFieldStyles.textBoxHorizontal(), vertical: TextFieldStyles.textBoxVertical()),
           child: emailField(),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          padding: EdgeInsets.symmetric(horizontal: TextFieldStyles.textBoxHorizontal(), vertical: TextFieldStyles.textBoxVertical()),
           child: passwordField(),
         )
       ],
