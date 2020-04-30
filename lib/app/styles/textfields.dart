@@ -26,4 +26,22 @@ abstract class TextFieldStyles {
               Border.all(color: AppColors.straw, width: BaseStyles.borderWidth),
           borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
         );
+
+  static InputDecoration materialDecoration(String hintText, IconData icon) {
+    return InputDecoration(
+      contentPadding: EdgeInsets.all(8.0),
+      hintText: hintText,
+      hintStyle: TextFieldStyles.placeholder,
+      border: InputBorder.none,
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.straw, width: BaseStyles.borderWidth),
+        borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.straw, width: BaseStyles.borderWidth),
+        borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
+      ),
+      prefixIcon: iconPrefix(icon)
+    ); 
+  }
 }
