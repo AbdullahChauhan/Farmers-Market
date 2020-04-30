@@ -1,4 +1,4 @@
 abstract class BaseStyles {
-  static double borderRadius = 18.0;
-  static double borderWidth = 2.0;
+  static double get borderRadius => 24.0;
+  static double get borderWidth => 2.0;
 }

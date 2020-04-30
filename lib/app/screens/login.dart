@@ -59,19 +59,21 @@ class Login extends StatelessWidget {
   Widget emailField() {
     if (Platform.isIOS) {
       return CupertinoTextField(
+        keyboardType: TextInputType.emailAddress,
+        padding: EdgeInsets.all(12.0),
         placeholder: 'Email address',
-        decoration: BoxDecoration(
-          border:
-              Border.all(color: AppColors.straw, width: BaseStyles.borderWidth),
-          borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
-        ),
+        placeholderStyle: TextFieldStyles.placeholder,
+        style: TextFieldStyles.body,
+        cursorColor: TextFieldStyles.cursorColor,
+        prefix: TextFieldStyles.iconPrefix(CupertinoIcons.mail_solid),
+        decoration: TextFieldStyles.cupertinoDecoration
       );
     }
     return TextField();
   }
 
   Widget passwordField() {
-    if (Platform.isAndroid) {
+    if (Platform.isIOS) {
       return CupertinoTextField(
         placeholder: 'Password',
         decoration: BoxDecoration(
