@@ -20,7 +20,7 @@ class PlatformApp extends StatelessWidget {
         home: Login(),
         onGenerateRoute: Routes.cupertinoRoutes,
         theme: CupertinoThemeData(
-          scaffoldBackgroundColor: Colors.white
+          scaffoldBackgroundColor: Colors.white,
         ),
       );
     }
@@ -29,7 +29,8 @@ class PlatformApp extends StatelessWidget {
       home: Login(),
       onGenerateRoute: Routes.materialRoutes,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white
+        scaffoldBackgroundColor: Colors.white,
+        fontFamily: 'Inter'
       ),
     );
   }

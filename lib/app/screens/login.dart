@@ -71,7 +71,7 @@ class Login extends StatelessWidget {
   }
 
   Widget passwordField() {
-    if (Platform.isIOS) {
+    if (Platform.isAndroid) {
       return CupertinoTextField(
         placeholder: 'Password',
         decoration: BoxDecoration(
