@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:farmers_market/app/styles/base.dart';
 import 'package:farmers_market/app/styles/colors.dart';
 import 'package:farmers_market/app/styles/textfields.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if(Platform.isIOS) {
+    if (Platform.isIOS) {
       return CupertinoPageScaffold(
         child: _pageBody(context),
       );
@@ -26,26 +27,29 @@ class Login extends StatelessWidget {
         Container(
           height: MediaQuery.of(context).size.height * .2,
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/top_bg.png'),
-              fit: BoxFit.fill
-            )
-          ),
+              image: DecorationImage(
+                  image: AssetImage('assets/images/top_bg.png'),
+                  fit: BoxFit.fill)),
         ),
         Container(
           height: 200,
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/logo.png'),
-            )
-          ),
+              image: DecorationImage(
+            image: AssetImage('assets/images/logo.png'),
+          )),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: TextFieldStyles.textBoxHorizontal(), vertical: TextFieldStyles.textBoxVertical()),
+          padding: EdgeInsets.symmetric(
+            horizontal: TextFieldStyles.textBoxHorizontal,
+            vertical: TextFieldStyles.textBoxVertical,
+          ),
           child: emailField(),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: TextFieldStyles.textBoxHorizontal(), vertical: TextFieldStyles.textBoxVertical()),
+          padding: EdgeInsets.symmetric(
+            horizontal: TextFieldStyles.textBoxHorizontal,
+            vertical: TextFieldStyles.textBoxVertical,
+          ),
           child: passwordField(),
         )
       ],
@@ -53,11 +57,13 @@ class Login extends StatelessWidget {
   }
 
   Widget emailField() {
-    if(Platform.isIOS) {
+    if (Platform.isIOS) {
       return CupertinoTextField(
-        decoration: BoxDecoration( 
-          border: Border.all(color: AppColors.straw, width: 2.0),
-          borderRadius: BorderRadius.circular(16.0)
+        placeholder: 'Email address',
+        decoration: BoxDecoration(
+          border:
+              Border.all(color: AppColors.straw, width: BaseStyles.borderWidth),
+          borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
         ),
       );
     }
@@ -65,11 +71,13 @@ class Login extends StatelessWidget {
   }
 
   Widget passwordField() {
-    if(Platform.isIOS) {
+    if (Platform.isIOS) {
       return CupertinoTextField(
-        decoration: BoxDecoration( 
-          border: Border.all(color: AppColors.straw, width: 2.0),
-          borderRadius: BorderRadius.circular(16.0)
+        placeholder: 'Password',
+        decoration: BoxDecoration(
+          border:
+              Border.all(color: AppColors.straw, width: BaseStyles.borderWidth),
+          borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
         ),
       );
     }
