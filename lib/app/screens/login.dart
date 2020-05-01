@@ -1,7 +1,4 @@
 import 'dart:io';
-
-import 'package:farmers_market/app/styles/base.dart';
-import 'package:farmers_market/app/styles/colors.dart';
 import 'package:farmers_market/app/styles/textfields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
