@@ -30,7 +30,6 @@ class PlatformApp extends StatelessWidget {
       onGenerateRoute: Routes.materialRoutes,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
-        fontFamily: 'Inter'
       ),
     );
   }
