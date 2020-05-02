@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:farmers_market/app/styles/text.dart';
 
 abstract class TextFieldStyles {
-  static double get textBoxHorizontal => 24.0;
-  static double get textBoxVertical => 8.0;
+  static double get textBoxHorizontal => BaseStyles.listFieldHorizontal;
+  static double get textBoxVertical => BaseStyles.listFieldVertical;
   static TextStyle get body => TextStyles.body;
   static TextStyle get placeholder => TextStyles.suggestion;
   static Color get cursorColor => AppColors.darkBlue;
