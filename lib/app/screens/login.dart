@@ -3,6 +3,7 @@ import 'package:farmers_market/app/widgets/button.dart';
 import 'package:farmers_market/app/widgets/textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -61,8 +62,22 @@ class Login extends StatelessWidget {
         AppButton(
           isIOS: Platform.isIOS,
           text: 'Login',
-          buttonType: ButtonType.LightBlue,
+          buttonType: ButtonType.DarkGray,
           onPressed: () => print('Clicked'),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SignInButton(
+              Buttons.Facebook,
+              mini: true,
+              onPressed: () {},
+            ),
+            SignInButton(
+              Buttons.GoogleDark,
+              onPressed: () {},
+            )
+          ],
         ),
       ],
     );
