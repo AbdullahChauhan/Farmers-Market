@@ -1,7 +1,10 @@
 import 'dart:io';
+import 'package:farmers_market/app/styles/base.dart';
+import 'package:farmers_market/app/styles/text.dart';
 import 'package:farmers_market/app/widgets/button.dart';
 import 'package:farmers_market/app/widgets/textfield.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
@@ -65,6 +68,28 @@ class Login extends StatelessWidget {
           buttonType: ButtonType.DarkGray,
           onPressed: () => print('Clicked'),
         ),
+        Padding(
+          padding: BaseStyles.listPadding,
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                  child: Divider(
+                height: 2.0,
+                color: Colors.grey,
+                indent: 50,
+                endIndent: 10,
+              )),
+              Text('OR'),
+              Expanded(
+                  child: Divider(
+                height: 2.0,
+                color: Colors.grey,
+                indent: 10,
+                endIndent: 50,
+              )),
+            ],
+          ),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -79,6 +104,22 @@ class Login extends StatelessWidget {
             )
           ],
         ),
+        Padding(
+          padding: BaseStyles.listPadding,
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              text: 'New Here? ',
+              style: TextStyles.body,
+              children: [
+                TextSpan(text: 'Signup',
+                style: TextStyles.link,
+                  recognizer: TapGestureRecognizer() ..onTap = () => Navigator.pushNamed(context, '/signup')
+                ),
+              ],
+            ),
+          ),
+        )
       ],
     );
   }

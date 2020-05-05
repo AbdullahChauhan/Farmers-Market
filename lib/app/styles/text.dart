@@ -17,6 +17,14 @@ abstract class TextStyles {
     )
   );
 
+  static TextStyle get link => GoogleFonts.inter(
+    textStyle: TextStyle(
+      color: AppColors.straw,
+      fontSize: 16.0,
+      fontWeight: FontWeight.w500
+    )
+  );
+
   static TextStyle get buttonTextLight => GoogleFonts.inter(
     textStyle: TextStyle(
       color: Colors.white,
