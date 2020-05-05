@@ -64,7 +64,7 @@ class SignUp extends StatelessWidget {
         ),
         AppButton(
           isIOS: Platform.isIOS,
-          text: 'Login',
+          text: 'Signup',
           buttonType: ButtonType.DarkGray,
           onPressed: () => print('Clicked'),
         ),
@@ -109,12 +109,12 @@ class SignUp extends StatelessWidget {
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-              text: 'New Here? ',
+              text: 'Already have an account? ',
               style: TextStyles.body,
               children: [
-                TextSpan(text: 'Signup',
+                TextSpan(text: 'Login',
                 style: TextStyles.link,
-                  recognizer: TapGestureRecognizer() ..onTap = () => Navigator.pushNamed(context, '/signup')
+                  recognizer: TapGestureRecognizer() ..onTap = () => Navigator.pushNamed(context, '/login')
                 ),
               ],
             ),
