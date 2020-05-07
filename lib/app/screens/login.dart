@@ -64,16 +64,23 @@ class Login extends StatelessWidget {
             );
           }
         ),
-        AppTextField(
-          isIOS: Platform.isIOS,
-          hintText: 'Password',
-          materialIcon: Icons.lock,
-          cupertinoIcon: IconData(
-            0xf4c9,
-            fontFamily: CupertinoIcons.iconFont,
-            fontPackage: CupertinoIcons.iconFontPackage,
-          ),
-          obscureText: true,
+        StreamBuilder<String>(
+          stream: authBloc.password,
+          builder: (context, snapshot) {
+            return AppTextField(
+              isIOS: Platform.isIOS,
+              hintText: 'Password',
+              materialIcon: Icons.lock,
+              cupertinoIcon: IconData(
+                0xf4c9,
+                fontFamily: CupertinoIcons.iconFont,
+                fontPackage: CupertinoIcons.iconFontPackage,
+              ),
+              obscureText: true,
+              onChanged: authBloc.changePassword,
+              errorText: snapshot.error,
+            );
+          }
         ),
         AppButton(
           isIOS: Platform.isIOS,
