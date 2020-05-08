@@ -3,7 +3,7 @@ import 'package:farmers_market/app/styles/textfields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AppTextField extends StatelessWidget {
+class AppTextField extends StatefulWidget {
   final bool isIOS;
   final String hintText;
   final IconData materialIcon;
@@ -24,8 +24,22 @@ class AppTextField extends StatelessWidget {
       this.errorText});
 
   @override
+  _AppTextFieldState createState() => _AppTextFieldState();
+}
+
+class _AppTextFieldState extends State<AppTextField> {
+
+  FocusNode _node;
+
+  @override
+  void initState() {
+    _node = FocusNode();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (isIOS) {
+    if (widget.isIOS) {
       return Padding(
         padding: EdgeInsets.symmetric(
           horizontal: TextFieldStyles.textBoxHorizontal,
@@ -36,19 +50,19 @@ class AppTextField extends StatelessWidget {
             CupertinoTextField(
               keyboardType: TextInputType.emailAddress,
               padding: EdgeInsets.all(12.0),
-              placeholder: hintText,
+              placeholder: widget.hintText,
               placeholderStyle: TextFieldStyles.placeholder,
               style: TextFieldStyles.body,
               cursorColor: TextFieldStyles.cursorColor,
-              prefix: TextFieldStyles.iconPrefix(cupertinoIcon),
-              obscureText: obscureText,
+              prefix: TextFieldStyles.iconPrefix(widget.cupertinoIcon),
+              obscureText: widget.obscureText,
               decoration: TextFieldStyles.cupertinoDecoration,
-              onChanged: onChanged,
-              textAlign: TextAlign.start,
+              onChanged: widget.onChanged,
+              focusNode: _node,
             ),
-            if (errorText != null) Padding(
+            if (widget.errorText != null) Padding(
               padding: const EdgeInsets.only(top: 8.0),
-              child: Text(errorText, style: TextStyles.error,),
+              child: Text(widget.errorText, style: TextStyles.error,),
             )
           ],
         ),
@@ -60,14 +74,20 @@ class AppTextField extends StatelessWidget {
         vertical: TextFieldStyles.textBoxVertical,
       ),
       child: TextField(
-        keyboardType: textInputType,
+        keyboardType: widget.textInputType,
         style: TextFieldStyles.body,
         cursorColor: TextFieldStyles.cursorColor,
-        obscureText: obscureText,
+        obscureText: widget.obscureText,
         decoration: TextFieldStyles.materialDecoration(
-            hintText, materialIcon, errorText),
-        onChanged: onChanged,
+            widget.hintText, widget.materialIcon, widget.errorText),
+        onChanged: widget.onChanged,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _node.dispose();
+    super.dispose();
   }
 }
