@@ -28,13 +28,26 @@ class AppTextField extends StatefulWidget {
 }
 
 class _AppTextFieldState extends State<AppTextField> {
-
   FocusNode _node;
+  bool _displayCupertinoErrorBorder;
+  TextEditingController _controller;
 
   @override
   void initState() {
     _node = FocusNode();
+    _node.addListener(_handleFocusChange);
+    _displayCupertinoErrorBorder = false;
+    _controller = TextEditingController();
     super.initState();
+  }
+
+  void _handleFocusChange() {
+    if (_node.hasFocus == false && widget.errorText != null) {
+      _displayCupertinoErrorBorder = true;
+    } else {
+      _displayCupertinoErrorBorder = false;
+    }
+    widget.onChanged(_controller.text);
   }
 
   @override
@@ -48,6 +61,7 @@ class _AppTextFieldState extends State<AppTextField> {
         child: Column(
           children: [
             CupertinoTextField(
+              controller: _controller,
               keyboardType: TextInputType.emailAddress,
               padding: EdgeInsets.all(12.0),
               placeholder: widget.hintText,
@@ -56,14 +70,20 @@ class _AppTextFieldState extends State<AppTextField> {
               cursorColor: TextFieldStyles.cursorColor,
               prefix: TextFieldStyles.iconPrefix(widget.cupertinoIcon),
               obscureText: widget.obscureText,
-              decoration: TextFieldStyles.cupertinoDecoration,
+              decoration: _displayCupertinoErrorBorder
+                  ? TextFieldStyles.cupertinoErrorDecoration
+                  : TextFieldStyles.cupertinoDecoration,
               onChanged: widget.onChanged,
               focusNode: _node,
             ),
-            if (widget.errorText != null) Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Text(widget.errorText, style: TextStyles.error,),
-            )
+            if (widget.errorText != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text(
+                  widget.errorText,
+                  style: TextStyles.error,
+                ),
+              )
           ],
         ),
       );
@@ -87,7 +107,9 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   void dispose() {
+    _node.removeListener(_handleFocusChange);
     _node.dispose();
+    _controller.dispose();
     super.dispose();
   }
 }

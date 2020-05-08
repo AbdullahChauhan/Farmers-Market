@@ -54,7 +54,7 @@ class Login extends StatelessWidget {
           stream: authBloc.email,
           builder: (context, snapshot) {
             return AppTextField(
-              isIOS: Platform.isAndroid,
+              isIOS: Platform.isIOS,
               textInputType: TextInputType.emailAddress,
               hintText: 'Email address',
               materialIcon: Icons.email,
