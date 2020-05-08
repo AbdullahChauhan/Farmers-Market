@@ -25,6 +25,14 @@ abstract class TextStyles {
     )
   );
 
+  static TextStyle get error => GoogleFonts.inter(
+    textStyle: TextStyle(
+      color: AppColors.red,
+      fontSize: 12.0,
+      fontWeight: FontWeight.w500
+    )
+  );
+
   static TextStyle get buttonTextLight => GoogleFonts.inter(
     textStyle: TextStyle(
       color: Colors.white,

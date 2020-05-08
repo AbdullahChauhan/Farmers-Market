@@ -27,6 +27,12 @@ abstract class TextFieldStyles {
           borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
         );
 
+  static BoxDecoration get cupertinoErrorDecoration => BoxDecoration(
+          border:
+              Border.all(color: AppColors.red, width: BaseStyles.borderWidth),
+          borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
+        );
+
   static InputDecoration materialDecoration(String hintText, IconData icon, String errorText) {
     return InputDecoration(
       contentPadding: EdgeInsets.all(8.0),
@@ -34,6 +40,7 @@ abstract class TextFieldStyles {
       hintStyle: TextFieldStyles.placeholder,
       border: InputBorder.none,
       errorText: errorText,
+      errorStyle: TextStyles.error,
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.straw, width: BaseStyles.borderWidth),
         borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
