@@ -40,4 +40,12 @@ abstract class TextStyles {
       fontWeight: FontWeight.w500
     )
   );
+
+  static TextStyle get buttonTextDark => GoogleFonts.inter(
+    textStyle: TextStyle(
+      color: Colors.black,
+      fontSize: 16.0,
+      fontWeight: FontWeight.w500
+    )
+  );
 }

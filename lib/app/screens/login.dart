@@ -88,8 +88,10 @@ class Login extends StatelessWidget {
             return AppButton(
               isIOS: Platform.isIOS,
               text: 'Login',
-              buttonType: snapshot.data == true ? ButtonType.LightBlue : ButtonType.Disabled,
-              onPressed: () => print('Clicked'),
+              buttonType: ButtonType.LightBlue,
+              onPressed: snapshot.data == true ? () {
+                print('Check clicked!');
+              } : null,
             );
           }
         ),
