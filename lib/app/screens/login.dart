@@ -52,7 +52,7 @@ class Login extends StatelessWidget {
         ),
         StreamBuilder<String>(
           stream: authBloc.email,
-          builder: (context, snapshot) {
+          builder: (_, snapshot) {
             return AppTextField(
               isIOS: Platform.isIOS,
               textInputType: TextInputType.emailAddress,
@@ -66,7 +66,7 @@ class Login extends StatelessWidget {
         ),
         StreamBuilder<String>(
           stream: authBloc.password,
-          builder: (context, snapshot) {
+          builder: (_, snapshot) {
             return AppTextField(
               isIOS: Platform.isIOS,
               hintText: 'Password',
@@ -82,11 +82,16 @@ class Login extends StatelessWidget {
             );
           }
         ),
-        AppButton(
-          isIOS: Platform.isIOS,
-          text: 'Login',
-          buttonType: ButtonType.DarkGray,
-          onPressed: () => print('Clicked'),
+        StreamBuilder<bool>(
+          stream: authBloc.isValid,
+          builder: (_, snapshot) {
+            return AppButton(
+              isIOS: Platform.isIOS,
+              text: 'Login',
+              buttonType: snapshot.data == true ? ButtonType.LightBlue : ButtonType.Disabled,
+              onPressed: () => print('Clicked'),
+            );
+          }
         ),
         Padding(
           padding: BaseStyles.listPadding,
