@@ -87,7 +87,7 @@ class SignUp extends StatelessWidget {
           builder: (_, snapshot) {
             return AppButton(
               isIOS: Platform.isIOS,
-              text: 'Login',
+              text: 'Signup',
               buttonType: ButtonType.LightBlue,
               onPressed: snapshot.data == true ? () {
                 print('Check clicked!');
