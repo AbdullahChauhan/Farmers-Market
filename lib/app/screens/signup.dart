@@ -89,9 +89,7 @@ class SignUp extends StatelessWidget {
               isIOS: Platform.isIOS,
               text: 'Signup',
               buttonType: ButtonType.LightBlue,
-              onPressed: snapshot.data == true ? () {
-                print('Check clicked!');
-              } : null,
+              onPressed: snapshot.data == true ? authBloc.signupEmail : null,
             );
           }
         ),
