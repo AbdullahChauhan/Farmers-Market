@@ -48,11 +48,19 @@ class AuthBloc {
 
   // functions
   signupEmail() async {
-    print('Signup with user email and password');
     try {
       AuthResult authResult = await _auth.createUserWithEmailAndPassword(email: _email.value.trim(), password: _password.value.trim());
       var user = User(userId: authResult.user.uid, email: authResult.user.email);
       await _firestoreService.addUser(user);
+    } catch (err) {
+      print(err);
+    }
+  }
+
+  loginEmail() async {
+    try {
+      AuthResult authResult = await _auth.signInWithEmailAndPassword(email: _email.value.trim(), password: _password.value.trim());
+      var user = await _firestoreService.fetchUser(authResult.user.uid);
     } catch (err) {
       print(err);
     }
