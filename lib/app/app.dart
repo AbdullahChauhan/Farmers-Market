@@ -66,7 +66,6 @@ class AuthWidget extends StatelessWidget {
       stream: authBloc.authState,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
-          final user = snapshot.data;
           return snapshot.hasData ? Landing() : Login();
         }
         return loadingScreen(isIOS);
