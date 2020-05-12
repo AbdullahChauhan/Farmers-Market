@@ -11,6 +11,7 @@ final RegExp regExpEmail = RegExp(
 class AuthBloc {
   final _email = BehaviorSubject<String>();
   final _password = BehaviorSubject<String>();
+  final _user = BehaviorSubject<User>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirestoreService _firestoreService = FirestoreService();
 
@@ -18,6 +19,7 @@ class AuthBloc {
   Stream<String> get email => _email.stream.transform(validateEmail);
   Stream<String> get password => _password.stream.transform(validatePassword);
   Stream<bool> get isValid => CombineLatestStream.combine2(email, password, (email, password) => true);
+  Stream<User> get user => _user.stream;
 
   // set data
   Function(String) get changeEmail => _email.sink.add;
@@ -27,6 +29,7 @@ class AuthBloc {
   dispose() {
     _email.close();
     _password.close();
+    _user.close();
   }
 
   // transformers
@@ -52,6 +55,7 @@ class AuthBloc {
       AuthResult authResult = await _auth.createUserWithEmailAndPassword(email: _email.value.trim(), password: _password.value.trim());
       var user = User(userId: authResult.user.uid, email: authResult.user.email);
       await _firestoreService.addUser(user);
+      _user.sink.add(user);
     } catch (err) {
       print(err);
     }
@@ -61,6 +65,7 @@ class AuthBloc {
     try {
       AuthResult authResult = await _auth.signInWithEmailAndPassword(email: _email.value.trim(), password: _password.value.trim());
       var user = await _firestoreService.fetchUser(authResult.user.uid);
+      _user.sink.add(user);
     } catch (err) {
       print(err);
     }
