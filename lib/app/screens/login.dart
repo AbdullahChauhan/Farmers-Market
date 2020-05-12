@@ -89,9 +89,7 @@ class Login extends StatelessWidget {
               isIOS: Platform.isIOS,
               text: 'Login',
               buttonType: ButtonType.LightBlue,
-              onPressed: snapshot.data == true ? () {
-                print('Check clicked!');
-              } : null,
+              onPressed: snapshot.data == true ? authBloc.loginEmail : null,
             );
           }
         ),

@@ -20,6 +20,7 @@ class AuthBloc {
   Stream<String> get password => _password.stream.transform(validatePassword);
   Stream<bool> get isValid => CombineLatestStream.combine2(email, password, (email, password) => true);
   Stream<User> get user => _user.stream;
+  Stream<User> get authState => _auth.onAuthStateChanged.map((_userFromFirebase));
 
   // set data
   Function(String) get changeEmail => _email.sink.add;
@@ -69,5 +70,13 @@ class AuthBloc {
     } catch (err) {
       print(err);
     }
+  }
+
+  signout() async {
+    await _auth.signOut();
+  }
+
+  User _userFromFirebase(FirebaseUser user) {
+    return user == null ? null : User(userId: user.uid, email: user.email);
   }
 }
