@@ -10,7 +10,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:provider/provider.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
+  @override
+  _SignUpState createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+
+  @override
+  void initState() {
+    final authBloc = Provider.of<AuthBloc>(context, listen: false);
+    authBloc.user.listen((user) {
+      if(user != null) Navigator.pushReplacementNamed(context, '/landing');
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
 
