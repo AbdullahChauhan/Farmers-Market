@@ -72,8 +72,12 @@ class AuthBloc {
     }
   }
 
-  signout() async {
-    await _auth.signOut();
+  Future signout() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
+      print(e);
+    }
   }
 
   User _userFromFirebase(FirebaseUser user) {
