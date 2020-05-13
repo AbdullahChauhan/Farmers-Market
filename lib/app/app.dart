@@ -1,5 +1,4 @@
 import 'package:farmers_market/app/blocs/auth_bloc.dart';
-import 'package:farmers_market/app/models/user.dart';
 import 'package:farmers_market/app/routes.dart';
 import 'package:farmers_market/app/screens/landing.dart';
 import 'package:farmers_market/app/screens/login.dart';
@@ -19,7 +18,12 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return Provider(create: (context) => authBloc, child: PlatformApp());
+    return MultiProvider(
+      providers: [
+        Provider(create: (context) => authBloc),
+        FutureProvider(create: (context) => authBloc.isLoggedIn())
+      ],
+      child: PlatformApp());
   }
 
   @override
@@ -32,10 +36,13 @@ class _AppState extends State<App> {
 class PlatformApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    var isLoggedIn = Provider.of<bool>(context);
+
     if (Platform.isIOS) {
       return CupertinoApp(
         debugShowCheckedModeBanner: false,
-        home: AuthWidget(isIOS: true,),
+        home: (isLoggedIn == null) ? loadingScreen(true) : (isLoggedIn == true ) ? Landing() : Login(),
         onGenerateRoute: Routes.cupertinoRoutes,
         theme: CupertinoThemeData(
           scaffoldBackgroundColor: Colors.white,
@@ -44,32 +51,11 @@ class PlatformApp extends StatelessWidget {
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthWidget(isIOS: false,),
+      home: (isLoggedIn == null) ? loadingScreen(false) : (isLoggedIn == true ) ? Landing() : Login(),
       onGenerateRoute: Routes.materialRoutes,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
-    );
-  }
-}
-
-class AuthWidget extends StatelessWidget {
-  final bool isIOS;
-
-  const AuthWidget({this.isIOS});
-
-  @override
-  Widget build(BuildContext context) {
-    final authBloc = Provider.of<AuthBloc>(context);
-
-    return StreamBuilder<User>(
-      stream: authBloc.authState,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.active) {
-          return snapshot.hasData ? Landing() : Login();
-        }
-        return loadingScreen(isIOS);
-      },
     );
   }
 
