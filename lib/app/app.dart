@@ -5,7 +5,6 @@ import 'package:farmers_market/app/screens/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-
 import 'package:provider/provider.dart';
 
 final authBloc = AuthBloc();

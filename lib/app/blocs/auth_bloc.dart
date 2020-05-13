@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:farmers_market/app/models/user.dart';
 import 'package:farmers_market/app/services/firestore_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
