@@ -18,7 +18,7 @@ class Vendor extends StatelessWidget {
           body: Center(child: Text('Placeholder'),)),
       );
     } else {
-      return Center(child: Scaffold(body: Text('Material'),));
+      return Scaffold(body: Center(child: Text('Material')),);
     }
   }
 }
