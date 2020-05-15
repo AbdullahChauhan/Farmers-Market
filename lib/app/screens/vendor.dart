@@ -19,9 +19,15 @@ class Vendor extends StatelessWidget {
         ),
       );
     } else {
-      return Scaffold(
-        body: Center(
-          child: Text('Material'),
+      return DefaultTabController(
+        child: Scaffold(
+          body: NestedScrollView(
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {  
+              return <Widget> [
+                
+              ];
+            },
+          )
         ),
       );
     }
