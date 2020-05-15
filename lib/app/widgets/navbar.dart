@@ -15,6 +15,9 @@ abstract class AppNavbar {
       title: Text(title),
       backgroundColor: AppColors.darkBlue,
       bottom: tabBar,
+      floating: true,
+      pinned: true,
+      snap: true,
     );
   }
 }

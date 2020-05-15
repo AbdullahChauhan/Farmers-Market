@@ -3,6 +3,7 @@ import 'package:farmers_market/app/widgets/orders.dart';
 import 'package:farmers_market/app/widgets/products.dart';
 import 'package:farmers_market/app/widgets/profile.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 abstract class VendorScaffold {
   static CupertinoTabScaffold get cupertinoTabScaffold {
@@ -37,4 +38,20 @@ abstract class VendorScaffold {
 
     return Profile();
   }
+
+  static TabBar get materialTabBar {
+    return TabBar(
+      tabs: <Widget>[
+        Tab(  
+          icon: Icon(Icons.list),
+        ),
+        Tab(  
+          icon: Icon(Icons.shopping_cart),
+        ),
+        Tab(  
+          icon: Icon(Icons.person),
+        ),
+      ],
+    );
+  } 
 }
