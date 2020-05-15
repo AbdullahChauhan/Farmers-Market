@@ -1,4 +1,5 @@
 import 'package:farmers_market/app/styles/colors.dart';
+import 'package:farmers_market/app/styles/tabBar.dart';
 import 'package:farmers_market/app/widgets/orders.dart';
 import 'package:farmers_market/app/widgets/products.dart';
 import 'package:farmers_market/app/widgets/profile.dart';
@@ -41,6 +42,9 @@ abstract class VendorScaffold {
 
   static TabBar get materialTabBar {
     return TabBar(
+      unselectedLabelColor: TabBarStyles.unselectedLabelColor,
+      labelColor: TabBarStyles.labelColor,
+      indicatorColor: TabBarStyles.indicatorColor,
       tabs: <Widget>[
         Tab(  
           icon: Icon(Icons.list),
