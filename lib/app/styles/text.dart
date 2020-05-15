@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 abstract class TextStyles {
+
+  static TextStyle get navTitleMaterial => GoogleFonts.poppins(
+    textStyle: TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.bold
+    )
+  );
+
   static TextStyle get body => GoogleFonts.inter(
     textStyle: TextStyle(
       color: AppColors.darkGray,
