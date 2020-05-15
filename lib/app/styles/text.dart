@@ -11,6 +11,13 @@ abstract class TextStyles {
     )
   );
 
+  static TextStyle get navTitleCupertino => GoogleFonts.poppins(
+    textStyle: TextStyle(
+      color: AppColors.darkBlue,
+      fontWeight: FontWeight.bold
+    )
+  );
+
   static TextStyle get body => GoogleFonts.inter(
     textStyle: TextStyle(
       color: AppColors.darkGray,
