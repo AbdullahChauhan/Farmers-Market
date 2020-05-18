@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:farmers_market/app/blocs/auth_bloc.dart';
+import 'package:farmers_market/app/widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -16,8 +19,14 @@ class Profile extends StatelessWidget {
   }
 
   Widget _pageBody(BuildContext context) {
-    return Center(  
-      child: Text('Profile'),
+    final authBloc = Provider.of<AuthBloc>(context);
+
+    return Center(
+      child: AppButton(
+        isIOS: Platform.isIOS,
+        text: 'Logout',
+        onPressed: () => authBloc.logout(),
+      ),
     );
   }
 }
