@@ -93,4 +93,10 @@ class AuthBloc {
     _user.sink.add(user);
     return true;
   }
+
+  Future<void> logout() async {
+    await _auth.signOut();
+
+    _user.add(null);
+  }
 }
