@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:farmers_market/app/models/user.dart';
 import 'package:farmers_market/app/services/firestore_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:rxdart/rxdart.dart';
 
 final RegExp regExpEmail = RegExp(
@@ -59,8 +60,9 @@ class AuthBloc {
       var user = User(userId: authResult.user.uid, email: authResult.user.email);
       await _firestoreService.addUser(user);
       _user.sink.add(user);
-    } catch (err) {
+    } on PlatformException catch (err) {
       print(err);
+      _errorMessage.sink.add(err.message);
     }
   }
 
@@ -69,8 +71,9 @@ class AuthBloc {
       AuthResult authResult = await _auth.signInWithEmailAndPassword(email: _email.value.trim(), password: _password.value.trim());
       var user = await _firestoreService.fetchUser(authResult.user.uid);
       _user.sink.add(user);
-    } catch (err) {
+    } on PlatformException catch (err) {
       print(err);
+      _errorMessage.sink.add(err.message);
     }
   }
 
@@ -101,5 +104,9 @@ class AuthBloc {
     await _auth.signOut();
 
     _user.add(null);
+  }
+
+  clearErrorMessage() {
+    _errorMessage.sink.add('');
   }
 }
