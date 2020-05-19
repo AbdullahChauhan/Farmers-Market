@@ -12,19 +12,18 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
-
-  StreamSubscription _userSubscription;
-
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
 
+  StreamSubscription _userSubscription;
+
   @override
   void initState() {
     final authBloc = Provider.of<AuthBloc>(context, listen: false);
-    widget._userSubscription = authBloc.user.listen((user) {
+    _userSubscription = authBloc.user.listen((user) {
       if(user != null) Navigator.pushReplacementNamed(context, '/landing');
     });
     super.initState();
@@ -32,7 +31,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   void dispose() {
-    widget._userSubscription.cancel();
+    _userSubscription.cancel();
     super.dispose();
   }
 
