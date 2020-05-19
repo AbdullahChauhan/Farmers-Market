@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 class Login extends StatefulWidget {
 
   StreamSubscription _userSubscription;
+  StreamSubscription _errorMessageSubscription;
 
   @override
   _LoginState createState() => _LoginState();
@@ -27,12 +28,20 @@ class _LoginState extends State<Login> {
     widget._userSubscription = authBloc.user.listen((user) {
       if (user != null) Navigator.pushReplacementNamed(context, '/landing');
     });
+
+    widget._errorMessageSubscription = authBloc.errorMessage.listen((errorMessage) {
+      if (errorMessage != null) {
+        // show alert
+      }
+    });
+
     super.initState();
   }
 
   @override
   void dispose() {
     widget._userSubscription.cancel();
+    widget._errorMessageSubscription.cancel();
     super.dispose();
   }
   
