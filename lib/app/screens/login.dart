@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:farmers_market/app/blocs/auth_bloc.dart';
 import 'package:farmers_market/app/styles/base.dart';
 import 'package:farmers_market/app/styles/text.dart';
+import 'package:farmers_market/app/widgets/alert.dart';
 import 'package:farmers_market/app/widgets/button.dart';
 import 'package:farmers_market/app/widgets/textfield.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,7 +32,7 @@ class _LoginState extends State<Login> {
 
     widget._errorMessageSubscription = authBloc.errorMessage.listen((errorMessage) {
       if (errorMessage != null) {
-        // show alert
+        AppAlert.showErrorDialog(context, errorMessage).then((value) => authBloc.clearErrorMessage());
       }
     });
 
