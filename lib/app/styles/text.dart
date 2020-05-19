@@ -18,6 +18,14 @@ abstract class TextStyles {
     )
   );
 
+  static TextStyle get subTitle => GoogleFonts.economica(
+    textStyle: TextStyle(
+      color: AppColors.straw,
+      fontWeight: FontWeight.bold,
+      fontSize: 28.0
+    )
+  );
+
   static TextStyle get body => GoogleFonts.inter(
     textStyle: TextStyle(
       color: AppColors.darkGray,
