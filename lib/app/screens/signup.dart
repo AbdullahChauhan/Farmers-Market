@@ -31,7 +31,7 @@ class _SignUpState extends State<SignUp> {
 
     _errorMessageSubscription = authBloc.errorMessage.listen((errorMessage) {
       if (errorMessage != "") {
-        AppAlert.showErrorDialog(context, errorMessage).then((_) => authBloc.clearErrorMessage());
+        AppAlert.showErrorDialog(Platform.isIOS, context, errorMessage).then((_) => authBloc.clearErrorMessage());
       }
     });
     super.initState();
