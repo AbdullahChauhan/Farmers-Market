@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:farmers_market/app/blocs/auth_bloc.dart';
 import 'package:farmers_market/app/styles/base.dart';
 import 'package:farmers_market/app/styles/text.dart';
+import 'package:farmers_market/app/widgets/alert.dart';
 import 'package:farmers_market/app/widgets/button.dart';
 import 'package:farmers_market/app/widgets/textfield.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,6 +20,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
 
   StreamSubscription _userSubscription;
+  StreamSubscription _errorMessageSubscription;
 
   @override
   void initState() {
@@ -26,12 +28,19 @@ class _SignUpState extends State<SignUp> {
     _userSubscription = authBloc.user.listen((user) {
       if(user != null) Navigator.pushReplacementNamed(context, '/landing');
     });
+
+    _errorMessageSubscription = authBloc.errorMessage.listen((errorMessage) {
+      if (errorMessage != "") {
+        AppAlert.showErrorDialog(context, errorMessage).then((_) => authBloc.clearErrorMessage());
+      }
+    });
     super.initState();
   }
 
   @override
   void dispose() {
     _userSubscription.cancel();
+    _errorMessageSubscription.cancel();
     super.dispose();
   }
 

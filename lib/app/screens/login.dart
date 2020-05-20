@@ -30,8 +30,8 @@ class _LoginState extends State<Login> {
     });
 
     _errorMessageSubscription = authBloc.errorMessage.listen((errorMessage) {
-      if (errorMessage != null) {
-        AppAlert.showErrorDialog(context, errorMessage).then((value) => authBloc.clearErrorMessage());
+      if (errorMessage != "") {
+        AppAlert.showErrorDialog(context, errorMessage).then((_) => authBloc.clearErrorMessage());
       }
     });
 
