@@ -1,3 +1,4 @@
+import 'package:farmers_market/app/styles/colors.dart';
 import 'package:farmers_market/app/styles/text.dart';
 import 'package:farmers_market/app/styles/textfields.dart';
 import 'package:flutter/cupertino.dart';
@@ -62,6 +63,17 @@ class _AppTextFieldState extends State<AppTextField> {
     });
   }
 
+  Widget _togglePasswordButton(Icon iconData1, Icon iconData2) {
+    return widget.hintText == "Password"
+        ? IconButton(
+            onPressed: _togglePasswordVisibility,
+            icon: _isPasswordHidden
+                ? iconData1
+                : iconData2,
+          )
+        : null;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.isIOS) {
@@ -82,7 +94,16 @@ class _AppTextFieldState extends State<AppTextField> {
               style: TextFieldStyles.body,
               cursorColor: TextFieldStyles.cursorColor,
               prefix: TextFieldStyles.iconPrefix(widget.cupertinoIcon),
-              obscureText: widget.obscureText,
+              suffix: _togglePasswordButton(Icon(IconData(
+                0xf424,
+                fontFamily: CupertinoIcons.iconFont,
+                fontPackage: CupertinoIcons.iconFontPackage,
+              )), Icon(IconData(
+                0xf425,
+                fontFamily: CupertinoIcons.iconFont,
+                fontPackage: CupertinoIcons.iconFontPackage,
+              ), color: AppColors.lightBlue,),),
+              obscureText: widget.obscureText ? _isPasswordHidden : false,
               decoration: _displayCupertinoErrorBorder
                   ? TextFieldStyles.cupertinoErrorDecoration
                   : TextFieldStyles.cupertinoDecoration,
@@ -118,7 +139,7 @@ class _AppTextFieldState extends State<AppTextField> {
             widget.materialIcon,
             widget.errorText,
             _togglePasswordVisibility,
-            _isPasswordHidden),
+            _isPasswordHidden, _togglePasswordButton(Icon(Icons.visibility_off, color: AppColors.lightBlue,), Icon(Icons.visibility, color: AppColors.lightBlue))),
         onChanged: widget.onChanged,
         onSubmitted: widget.onSubmitted,
       ),

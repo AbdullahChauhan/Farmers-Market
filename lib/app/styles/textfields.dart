@@ -33,7 +33,7 @@ abstract class TextFieldStyles {
           borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
         );
 
-  static InputDecoration materialDecoration(String hintText, IconData icon, String errorText, Function togglePasswordVisibility, bool isPasswordHidden) {
+  static InputDecoration materialDecoration(String hintText, IconData icon, String errorText, Function togglePasswordVisibility, bool isPasswordHidden, Widget togglePasswordButton) {
     return InputDecoration(
       contentPadding: EdgeInsets.all(8.0),
       hintText: hintText,
@@ -41,10 +41,7 @@ abstract class TextFieldStyles {
       border: InputBorder.none,
       errorText: errorText,
       errorStyle: TextStyles.error,
-      suffixIcon: hintText == "Password" ? IconButton(
-          onPressed: togglePasswordVisibility,
-          icon: isPasswordHidden ? Icon(Icons.visibility_off, color: AppColors.lightBlue,) : Icon(Icons.visibility, color: AppColors.lightBlue,),
-        ) : null,
+      suffixIcon: togglePasswordButton,
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.straw, width: BaseStyles.borderWidth),
         borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
