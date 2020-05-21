@@ -90,6 +90,7 @@ class _LoginState extends State<Login> {
             return AppTextField(
               isIOS: Platform.isIOS,
               textInputType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
               hintText: 'Email address',
               materialIcon: Icons.email,
               cupertinoIcon: CupertinoIcons.mail_solid,

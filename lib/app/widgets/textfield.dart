@@ -9,6 +9,7 @@ class AppTextField extends StatefulWidget {
   final IconData materialIcon;
   final IconData cupertinoIcon;
   final TextInputType textInputType;
+  final TextInputAction textInputAction;
   final bool obscureText;
   final void Function(String) onChanged;
   final String errorText;
@@ -19,6 +20,7 @@ class AppTextField extends StatefulWidget {
       @required this.materialIcon,
       @required this.cupertinoIcon,
       this.textInputType = TextInputType.text,
+      this.textInputAction = TextInputAction.done,
       this.obscureText = false,
       this.onChanged,
       this.errorText});
@@ -31,6 +33,7 @@ class _AppTextFieldState extends State<AppTextField> {
   FocusNode _node;
   bool _displayCupertinoErrorBorder;
   TextEditingController _controller;
+  bool _isPasswordHidden;
 
   @override
   void initState() {
@@ -38,6 +41,7 @@ class _AppTextFieldState extends State<AppTextField> {
     _node.addListener(_handleFocusChange);
     _displayCupertinoErrorBorder = false;
     _controller = TextEditingController();
+    _isPasswordHidden = true;
     super.initState();
   }
 
@@ -48,6 +52,12 @@ class _AppTextFieldState extends State<AppTextField> {
       _displayCupertinoErrorBorder = false;
     }
     widget.onChanged(_controller.text);
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isPasswordHidden = !_isPasswordHidden;
+    });
   }
 
   @override
@@ -62,7 +72,8 @@ class _AppTextFieldState extends State<AppTextField> {
           children: [
             CupertinoTextField(
               controller: _controller,
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: widget.textInputType,
+              textInputAction: widget.textInputAction,
               padding: EdgeInsets.all(12.0),
               placeholder: widget.hintText,
               placeholderStyle: TextFieldStyles.placeholder,
@@ -95,11 +106,16 @@ class _AppTextFieldState extends State<AppTextField> {
       ),
       child: TextField(
         keyboardType: widget.textInputType,
+        textInputAction: widget.textInputAction,
         style: TextFieldStyles.body,
         cursorColor: TextFieldStyles.cursorColor,
-        obscureText: widget.obscureText,
+        obscureText: widget.obscureText ? _isPasswordHidden : false,
         decoration: TextFieldStyles.materialDecoration(
-            widget.hintText, widget.materialIcon, widget.errorText),
+            widget.hintText,
+            widget.materialIcon,
+            widget.errorText,
+            _togglePasswordVisibility,
+            _isPasswordHidden),
         onChanged: widget.onChanged,
       ),
     );
