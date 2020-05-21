@@ -12,6 +12,7 @@ class AppTextField extends StatefulWidget {
   final TextInputAction textInputAction;
   final bool obscureText;
   final void Function(String) onChanged;
+  final void Function(String) onSubmitted;
   final String errorText;
 
   const AppTextField(
@@ -23,6 +24,7 @@ class AppTextField extends StatefulWidget {
       this.textInputAction = TextInputAction.done,
       this.obscureText = false,
       this.onChanged,
+      this.onSubmitted,
       this.errorText});
 
   @override
@@ -85,6 +87,7 @@ class _AppTextFieldState extends State<AppTextField> {
                   ? TextFieldStyles.cupertinoErrorDecoration
                   : TextFieldStyles.cupertinoDecoration,
               onChanged: widget.onChanged,
+              onSubmitted: widget.onSubmitted,
               focusNode: _node,
             ),
             if (widget.errorText != null)
@@ -117,6 +120,7 @@ class _AppTextFieldState extends State<AppTextField> {
             _togglePasswordVisibility,
             _isPasswordHidden),
         onChanged: widget.onChanged,
+        onSubmitted: widget.onSubmitted,
       ),
     );
   }

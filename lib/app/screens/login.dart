@@ -95,6 +95,7 @@ class _LoginState extends State<Login> {
               materialIcon: Icons.email,
               cupertinoIcon: CupertinoIcons.mail_solid,
               onChanged: authBloc.changeEmail,
+              onSubmitted: (_) => FocusScope.of(context).nextFocus(),
               errorText: snapshot.error,
             );
           }
@@ -113,6 +114,7 @@ class _LoginState extends State<Login> {
               ),
               obscureText: true,
               onChanged: authBloc.changePassword,
+              onSubmitted: (_) => FocusScope.of(context).unfocus(),
               errorText: snapshot.error,
             );
           }
