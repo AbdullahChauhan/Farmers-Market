@@ -137,9 +137,7 @@ class _AppTextFieldState extends State<AppTextField> {
         decoration: TextFieldStyles.materialDecoration(
             widget.hintText,
             widget.materialIcon,
-            widget.errorText,
-            _togglePasswordVisibility,
-            _isPasswordHidden, _togglePasswordButton(Icon(Icons.visibility_off, color: AppColors.lightBlue,), Icon(Icons.visibility, color: AppColors.lightBlue))),
+            widget.errorText, _togglePasswordButton(Icon(Icons.visibility_off, color: AppColors.lightBlue,), Icon(Icons.visibility, color: AppColors.lightBlue))),
         onChanged: widget.onChanged,
         onSubmitted: widget.onSubmitted,
       ),

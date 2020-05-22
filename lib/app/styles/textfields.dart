@@ -33,7 +33,7 @@ abstract class TextFieldStyles {
           borderRadius: BorderRadius.circular(BaseStyles.borderRadius),
         );
 
-  static InputDecoration materialDecoration(String hintText, IconData icon, String errorText, Function togglePasswordVisibility, bool isPasswordHidden, Widget togglePasswordButton) {
+  static InputDecoration materialDecoration(String hintText, IconData icon, String errorText, Widget togglePasswordButton) {
     return InputDecoration(
       contentPadding: EdgeInsets.all(8.0),
       hintText: hintText,
