@@ -1,3 +1,4 @@
+import 'package:farmers_market/app/screens/edit_product.dart';
 import 'package:farmers_market/app/screens/landing.dart';
 import 'package:farmers_market/app/screens/login.dart';
 import 'package:farmers_market/app/screens/signup.dart';
@@ -16,6 +17,8 @@ abstract class Routes {
         return MaterialPageRoute(builder: (_) => Login());
       case '/vendor':
         return MaterialPageRoute(builder: (_) => Vendor());
+      case '/editproduct':
+        return MaterialPageRoute(builder: (_) => EditProduct());
       default:
         return MaterialPageRoute(builder: (_) => Login());
     }
@@ -31,6 +34,8 @@ abstract class Routes {
         return CupertinoPageRoute(builder: (_) => Login());
       case '/vendor':
         return CupertinoPageRoute(builder: (_) => Vendor());
+      case '/editproduct':
+        return CupertinoPageRoute(builder: (_) => EditProduct());
       default:
         return CupertinoPageRoute(builder: (_) => Login());
     }
