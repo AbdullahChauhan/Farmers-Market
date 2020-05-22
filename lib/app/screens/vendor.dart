@@ -43,7 +43,7 @@ class _VendorState extends State<Vendor> {
         child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
-              AppNavbar.cupertinoNavBar(title: 'Vendor Name', context: context),
+              AppNavbar.cupertinoNavBar(title: 'Vendor Name'),
             ];
           },
           body: VendorScaffold.cupertinoTabScaffold,

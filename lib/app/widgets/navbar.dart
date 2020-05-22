@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 
 abstract class AppNavbar {
 
-  static CupertinoSliverNavigationBar cupertinoNavBar ({String title, BuildContext context}) {
+  static CupertinoSliverNavigationBar cupertinoNavBar ({String title}) {
     return CupertinoSliverNavigationBar(  
       largeTitle: Text(title, style: TextStyles.navTitleCupertino),
     );
   }
 
-  static SliverAppBar materialNavBar({@required String title, @required TabBar tabBar}) {
+  static SliverAppBar materialNavBar({@required String title, TabBar tabBar}) {
     return SliverAppBar(
       title: Text(title, style: TextStyles.navTitleMaterial,),
       backgroundColor: AppColors.darkBlue,
