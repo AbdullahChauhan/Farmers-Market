@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:farmers_market/app/styles/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,12 +12,19 @@ class Products extends StatelessWidget {
         child: _pageBody(context),
       );
     } else {
-      return Scaffold(body: _pageBody(context));
+      return Scaffold(
+        body: _pageBody(context),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.straw,
+          child: Icon(Icons.add),
+          onPressed: () => Navigator.of(context).pushNamed('/editproduct'),
+        ),
+      );
     }
   }
 
   Widget _pageBody(BuildContext context) {
-    return Center(  
+    return Center(
       child: Text('Products'),
     );
   }
