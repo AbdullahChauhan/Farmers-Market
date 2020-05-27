@@ -4,6 +4,7 @@ import 'package:farmers_market/app/styles/base.dart';
 import 'package:farmers_market/app/styles/buttons.dart';
 import 'package:farmers_market/app/styles/colors.dart';
 import 'package:farmers_market/app/styles/text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppDropdownButton extends StatelessWidget {
@@ -23,7 +24,37 @@ class AppDropdownButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if(Platform.isIOS) {
-      return Container();
+      return Padding(
+        padding: BaseStyles.listPadding,
+        child: Container(
+          height: ButtonStyles.buttonHeight,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.straw, width: BaseStyles.borderWidth),
+            borderRadius: BorderRadius.circular(BaseStyles.borderRadius)
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.only(right: 4.0),
+                child: BaseStyles.iconPrefix(materialIcon),
+              ),
+              Expanded(
+                              child: Center(
+                  child: GestureDetector(
+                    child: Text(hintText, style: TextStyles.suggestion),
+                    onTap: () {
+                      showCupertinoModalPopup(context: context, builder: (context) {
+
+                      });
+                    },
+                  )
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
     } else {
       return Padding(
         padding: BaseStyles.listPadding,
@@ -61,5 +92,9 @@ class AppDropdownButton extends StatelessWidget {
       child: Text(item, textAlign: TextAlign.center),
       value: item
     )).toList();
+  }
+
+  _selectIOS(BuildContext context, List<String> items) {
+    
   }
 }
