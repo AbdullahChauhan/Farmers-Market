@@ -97,4 +97,32 @@ class AppDropdownButton extends StatelessWidget {
   _selectIOS(BuildContext context, List<String> items) {
     
   }
+
+  List<Widget> buildCupertinoItems(List<String> items) {
+    return items
+        .map((item) => Text(
+              item,
+              textAlign: TextAlign.center,
+              style: TextStyles.picker,
+            ))
+        .toList();
+  }
+
+  _selectIOS(BuildContext context, List<String> items) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: Container(
+        color: Colors.white,
+        height: 200.0,
+        child: CupertinoPicker(
+          itemExtent: 45.0,
+          children: buildCupertinoItems(items),
+          diameterRatio: 1.0,
+          onSelectedItemChanged: (int value) {},
+        ),
+      ),
+    );
+  }
 }
