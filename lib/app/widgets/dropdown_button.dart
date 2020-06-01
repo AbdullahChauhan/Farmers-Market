@@ -44,9 +44,10 @@ class AppDropdownButton extends StatelessWidget {
                   child: GestureDetector(
                     child: Text(hintText, style: TextStyles.suggestion),
                     onTap: () {
-                      showCupertinoModalPopup(context: context, builder: (context) {
-
-                      });
+                      showCupertinoModalPopup(
+                        context: context, builder: (BuildContext context) {
+                          return _selectIOS(context, items);
+                        });
                     },
                   )
                 ),
