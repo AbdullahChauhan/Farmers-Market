@@ -44,17 +44,18 @@ class _EditProductState extends State<EditProduct> {
             color: AppColors.lightGray,
           ),
         ),
-        AppTextField(
-          isIOS: isIOS,
-          hintText: 'Product Name',
-          materialIcon: Icons.shopping_cart,
-          cupertinoIcon: IconData(
-            0xf3f8,
-            fontFamily: CupertinoIcons.iconFont,
-            fontPackage: CupertinoIcons.iconFontPackage,
-          ),
-          textInputAction: TextInputAction.next,
-          onSubmitted: (_) => FocusScope.of(context).nextFocus(),
+        StreamBuilder<String>(
+          stream: productBloc.productName,
+          builder: (context, snapshot) {
+            return AppTextField(
+                hintText: 'Product Name',
+                cupertinoIcon: FontAwesomeIcons.shoppingBasket,
+                materialIcon: FontAwesomeIcons.shoppingBasket,
+                isIOS: isIOS,
+                errorText: snapshot.error,
+                onChanged: productBloc.changeProductName,
+                );
+          }
         ),
         // AppTextField(
         //   isIOS: isIOS,
