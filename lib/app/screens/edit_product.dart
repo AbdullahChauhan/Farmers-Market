@@ -69,37 +69,46 @@ class _EditProductState extends State<EditProduct> {
         //   textInputAction: TextInputAction.next,
         //   onSubmitted: (_) => FocusScope.of(context).nextFocus(),
         // ),
-        AppDropdownButton(
-          items: items,
-          hintText: 'Unit Type',
-          materialIcon: Icons.view_list,
-          cupertinoIcon: IconData(
-            0xf454,
-            fontFamily: CupertinoIcons.iconFont,
-            fontPackage: CupertinoIcons.iconFontPackage,
-          ),
+        StreamBuilder<String>(
+          stream: productBloc.unitType,
+          builder: (context, snapshot) {
+            return AppDropdownButton(
+              hintText: 'Unit Type',
+              items: items,
+              value: snapshot.data,
+              materialIcon: FontAwesomeIcons.balanceScale,
+              cupertinoIcon: FontAwesomeIcons.balanceScale,
+              onChanged: productBloc.changeUnitType,
+            );
+          }
         ),
-        AppTextField(
-          isIOS: isIOS,
-          hintText: 'Unit Price',
-          materialIcon: Icons.local_offer,
-          cupertinoIcon: IconData(
-            0xf2aa,
-            fontFamily: CupertinoIcons.iconFont,
-            fontPackage: CupertinoIcons.iconFontPackage,
-          ),
-          textInputAction: TextInputAction.next,
-          onSubmitted: (_) => FocusScope.of(context).nextFocus(),
+        StreamBuilder<double>(
+          stream: productBloc.unitPrice,
+          builder: (context, snapshot) {
+            return AppTextField(
+                hintText: 'Unit Price',
+                cupertinoIcon: FontAwesomeIcons.tag,
+                materialIcon: FontAwesomeIcons.tag,
+                isIOS: isIOS,
+                textInputType: TextInputType.number,
+                errorText: snapshot.error,
+                onChanged: productBloc.changeUnitPrice,
+                );
+          }
         ),
-        AppTextField(
-          isIOS: isIOS,
-          hintText: 'Available Units',
-          materialIcon: Icons.check_circle,
-          cupertinoIcon: IconData(
-            0xf3ff,
-            fontFamily: CupertinoIcons.iconFont,
-            fontPackage: CupertinoIcons.iconFontPackage,
-          ),
+        StreamBuilder<int>(
+          stream: productBloc.availableUnits,
+          builder: (context, snapshot) {
+            return AppTextField(
+                hintText: 'Available Units',
+                cupertinoIcon: FontAwesomeIcons.cubes,
+                materialIcon: FontAwesomeIcons.cubes,
+                isIOS: isIOS,
+                textInputType: TextInputType.number,
+                errorText: snapshot.error,
+                onChanged: productBloc.changeAvailableUnits,
+                );
+          }
         ),
         AppButton(
           isIOS: isIOS,
